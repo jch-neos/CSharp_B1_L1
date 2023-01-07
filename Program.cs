@@ -1,5 +1,5 @@
-﻿// exercise 1 : Make the following code run to completion
+﻿// exercise 2 : Make the following local function cancellable
 
-Task write = new Task(()=>Console.WriteLine("Doing some work"));
-await write;
-
+async Task RunLongProcess(int milliseconds){
+    await Task.Delay(milliseconds);
+}
