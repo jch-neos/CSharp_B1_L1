@@ -1,5 +1,15 @@
-﻿// exercise 1 : Make the following code run to completion
+﻿// exercise 6 : Use Debugger
 
-Task write = new Task(()=>Console.WriteLine("Doing some work"));
-await write;
+using System.Diagnostics;
 
+var tasks = Enumerable.Range(1,500).Select(i => Task.Run(delegate {
+    var j=0;
+    while(i>0) {
+        j*=j;
+        i--;
+    }
+})).ToArray();
+Thread.Sleep(10);
+if(Debugger.IsAttached)
+    Debugger.Break();
+Task.WhenAll(tasks);
