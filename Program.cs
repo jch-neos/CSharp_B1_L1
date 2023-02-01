@@ -1,5 +1,14 @@
-﻿// exercise 1 : Make the following code run to completion
+﻿AppDomain.CurrentDomain.UnhandledException += (object sender, UnhandledExceptionEventArgs e) =>{
+    Console.WriteLine("------------------------------");
+    Console.WriteLine(e.ExceptionObject.ToString());
+    Console.WriteLine(e.IsTerminating);
+    Console.WriteLine(sender.GetType().FullName);
+    Console.WriteLine("------------------------------");
+};
 
-Task write = new Task(()=>Console.WriteLine("Doing some work"));
-await write;
-
+Test();
+await Task.Delay(10000);
+async void Test() {
+    await Task.Delay(100);
+    throw new Exception("test");
+}
